@@ -1,0 +1,268 @@
+/* General */
+body, html {
+  margin: 0;
+  padding: 0;
+  font-family: Arial, sans-serif;
+  height: 100%;
+  overflow-x: hidden;
+}
+
+/* Pantalla de carga */
+#loading-screen {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  width: 100vw;
+  height: 100vh;
+  background-color: #000;
+  position: fixed;
+  top: 0;
+  left: 0;
+  z-index: 2;
+  flex-direction: column;
+}
+
+#loading-screen img {
+  position: absolute;
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  top: 0;
+  left: 0;
+  z-index: 1;
+}
+
+.overlay-text {
+  font-size: 8.5em;
+  font-family: 'Inside Out', sans-serif;
+  color: white;
+  text-align: center;
+  font-weight: bold;
+  z-index: 3;
+  position: relative;
+  top: -300px;
+  margin: 0;
+  text-shadow: 
+    0 0 5px #d9e6fa,
+    0 0 20px #d9e6fa,
+    0 0 30px #d9e6fa,
+    0 0 40px #d9e6fa;
+}
+
+/* Contenido principal */
+#main-content {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  min-height: 100vh;
+}
+
+/* Rectángulo de invitación */
+.invitation-card {
+  background-color: #fff;
+  border-radius: 15px;
+  padding: 30px;
+  width: 90%;
+  max-width: 600px;
+  box-shadow: 0px 4px 10px rgba(0, 0, 0, 0.1);
+  text-align: center;
+}
+
+.titulo {
+  font-size: 2.5em;
+  font-family: 'Inside Out', sans-serif;
+  color: #333;
+}
+
+.invitation-details {
+  font-size: 1.2em;
+  margin: 20px 0;
+  color: #555;
+}
+
+#enter-button {
+  display: flex;
+  flex-direction: column; /* Coloca el texto y el ícono en columnas */
+  align-items: center;
+  background-color: white;
+  border: 3px solid #FFD700;
+  color: black;
+  font-size: 20px;
+  padding: 10px 20px;
+  margin: 20px auto; /* Centra el botón horizontalmente */
+  cursor: pointer;
+  border-radius: 15px; /* Bordes redondeados */
+  transition: all 0.3s ease;
+  font-family: 'Inside Out', sans-serif;
+
+}
+
+#enter-button i {
+  font-size: 70px;
+  margin-top: 5px; /* Añade un poco de espacio entre el texto y el icono */
+  transition: transform 0.3s ease; /* Transición suave para el hover */
+  animation: blink 1.5s infinite; /* Aplica la animación de parpadeo */
+}
+
+#enter-button:hover i {
+  transform: scale(1.2); /* Agranda el ícono en el hover */
+}
+
+/* Botones del menú */
+.menu-button {
+  padding: 10px 20px;
+  font-size: 1.2em;
+  background-color: #FFD700;
+  border: none;
+  cursor: pointer;
+  transition: background-color 0.3s ease;
+  margin-top: 10px;
+  border-radius: 5px;
+  width: 100%;
+}
+
+.menu-button:hover {
+  background-color: #FFB700;
+}
+
+/* Sección de confirmación y playlist dentro del rectángulo */
+.section {
+  background-color: #fff;
+  border-radius: 15px;
+  padding: 20px;
+  margin-top: 20px;
+  margin-bottom: 10px;
+  width: 90vw; /* Ajusta el ancho a un porcentaje de la pantalla */
+  max-width: 600px; /* Límite máximo de ancho */
+  box-shadow: 0px 4px 10px rgba(0, 0, 0, 0.1);
+  position: relative;
+  margin-left: auto;
+  margin-right: auto; /* Centra la sección horizontalmente */
+}
+
+form {
+  display: flex;
+  flex-direction: column;
+}
+
+form label {
+  margin-bottom: 14px;
+  font-size: 1.1em;
+  margin-right: 10px;
+}
+
+form input {
+  padding: 8px;
+  margin-bottom: 15px;
+  font-size: 1em;
+  border-radius: 5px;
+  border: 1px solid #ccc;
+  width: 70%; /* Asegura que el input ocupe todo el ancho disponible */
+  box-sizing: border-box; /* Incluye el padding y el borde en el tamaño total */
+}
+
+form button {
+  padding: 10px 20px;
+  font-size: 1.2em;
+  background-color: #FFD700;
+  border: none;
+  cursor: pointer;
+  margin-top: 20px;
+  border-radius: 5px;
+}
+
+form button:hover {
+  background-color: #FFB700;
+}
+
+/* Estilo para los campos de entrada y el icono de añadir canción */
+.song-input {
+  display: flex;
+  align-items: center; /* Alinea el input y el botón en la misma línea */
+  margin-bottom: 10px;
+}
+
+.song-input input {
+  margin-left: 10px; /* Agrega espacio entre el nombre de la canción y el input */
+  flex-grow: 1; /* Asegura que el input ocupe el espacio disponible */
+}
+
+/* Estilo del icono */
+#add-song-icon {
+  cursor: pointer;
+  font-size: 20px;
+  color: #FFD700;
+  margin-left: 10px; /* Ajusta el espacio entre el input y el icono */
+  border: 2px solid #FFD700; /* Añade un borde de 2px de color dorado */
+  border-radius: 5px; /* Redondea los bordes */
+  padding: 5px; /* Agrega un poco de espacio interno para que el borde no quede demasiado ajustado al icono */
+  margin-bottom: 16px;
+}
+
+#add-song-icon:hover {
+  color: #FFB700;
+}
+
+/* Estilo de los campos de nombre y canción */
+.song-container {
+  display: flex;
+  align-items: center;
+  margin-bottom: 15px;
+}
+
+.song-container label {
+  font-size: 1.2em;
+  margin-right: 10px; /* Espacio entre el texto y el campo de entrada */
+}
+
+.song-container input {
+  width: 60%; /* Ajusta el tamaño del input */
+  padding: 8px;
+  font-size: 1em;
+  border-radius: 5px;
+  border: 1px solid #ccc;
+  margin-right: 10px;
+  box-sizing: border-box;
+}
+
+.nombres {
+  font-size: 3.5em;
+  font-family: 'Inside Out', sans-serif;
+}
+/* Animación de parpadeo */
+@keyframes blink {
+  0% {
+    opacity: 1; /* Totalmente visible */
+  }
+  50% {
+    opacity: 0; /* Totalmente invisible */
+  }
+  100% {
+    opacity: 1; /* Vuelve a ser visible */
+  }
+}
+/* Ajustes para el contenedor del mapa */
+.mapouter {
+  position: relative;
+  text-align: right;
+  height: 100%; /* Deja que el contenedor del mapa ocupe toda la altura disponible */
+  width: 100%; /* Asegura que el mapa ocupe el ancho completo */
+}
+
+/* Ajustes para el iframe */
+.gmap_canvas iframe {
+  width: 100%; /* Hace que el iframe ocupe el 100% del ancho */
+  height: 100%; /* Hace que el iframe ocupe el 100% de la altura */
+  border: 0; /* Elimina bordes innecesarios */
+}
+
+.titulosection{
+  font-family: 'Inside Out', sans-serif;
+   text-align: center;
+  }
+.finca{
+  height: 100%;
+  width: 100%;
+  object-fit: cover;
+  }
