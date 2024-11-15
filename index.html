@@ -7,7 +7,6 @@
   <link rel="stylesheet" href="style.css">
   <link href="https://fonts.cdnfonts.com/css/inside-out" rel="stylesheet">
   <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
-  <link rel="stylesheet" href="path/to/font-awesome/css/font-awesome.min.css">
 
   <script type="text/javascript" src="https://cdn.emailjs.com/dist/email.min.js"></script>
 <script type="text/javascript">
@@ -98,14 +97,14 @@
   <h2 class="titulosection">¡Ayúdanos a crear la "Isla de la Música"!</h2>
   <form id="playlist-form">
     <div class="song-container">
-      <label for="name">Tu nombre:</label>
+      <label for="name" id="nombrecancion">Nombre:</label>
       <input type="text" id="name" name="name" required placeholder="Introduce tu nombre">
     </div>
     <div id="songs-container">
       <div class="song-input">
         <label for="song-1">Canción:</label>
         <input type="text" name="song[]" required placeholder="Introduce el nombre de la Canción">
-        <i class="fa fa-plus" id="add-song-icon" style="cursor: pointer;"></i> 
+        <i class="fa fa-plus add-song-icon"  style="cursor: pointer;"></i> 
       </div>
     </div>
 
