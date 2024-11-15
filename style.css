@@ -62,8 +62,8 @@ body, html {
 }
 @media only screen and (max-width: 768px) {
   .overlay-text {
-    font-size: 6em;
-    top: -10%;
+    font-size: 5em;
+    top: 0%;
     text-shadow: 
     0 0 5px #d9e6fa,
     0 0 20px #d9e6fa,
