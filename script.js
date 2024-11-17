@@ -3,7 +3,6 @@ document.addEventListener("DOMContentLoaded", function () {
   setTimeout(function () {
     const loadingScreen = document.getElementById("loading-screen");
     loadingScreen.classList.add("fade-out");
-
     loadingScreen.addEventListener("transitionend", function () {
       loadingScreen.style.display = "none";
       document.getElementById("main-content").style.display = "flex";
@@ -16,62 +15,111 @@ document.addEventListener("DOMContentLoaded", function () {
     this.style.display = "none";
   });
 
-  // FSelección section
+  // Mostrar secciones
   function showSection(sectionId) {
-    const sections = document.querySelectorAll('.section');
-    sections.forEach(function (section) {
+    document.querySelectorAll('.section').forEach(section => {
       section.style.display = 'none';
     });
-    const section = document.getElementById(sectionId);
-    if (section) section.style.display = 'block';
+    document.getElementById(sectionId).style.display = 'block';
   }
 
-  // Bbotones del menú
-  document.querySelectorAll('.menu-button').forEach(function (button) {
+  document.querySelectorAll('.menu-button').forEach(button => {
     button.addEventListener("click", function () {
-      const sectionId = this.getAttribute('data-section');
-      showSection(sectionId);
+      showSection(this.getAttribute('data-section'));
     });
   });
 
-  // Playlist
+  // Confirmación: Mostrar/ocultar campos
+  const confirmationForm = document.getElementById("confirmation-form");
+  const additionalFields = document.getElementById("additional-fields");
+  const companionNameField = document.getElementById("companion-name-field");
+  const stayOptions = document.getElementById("stay-options");
+  const allergiesField = document.getElementById("allergies-field");
+  const commentsField = document.getElementById("comments-field");
+
+  confirmationForm.addEventListener("change", function (event) {
+    const attendingYes = document.getElementById("yes").checked;
+    const attendingNo = document.getElementById("no").checked;
+    const accompaniedYes = document.getElementById("accompanied-yes").checked;
+    if (attendingNo) {
+      alert("Sentimos que no puedas venir...");
+    }
+
+    // Boda SI
+    additionalFields.style.display = attendingYes ? "block" : "none";
+
+    // Acompañado SI
+    companionNameField.style.display = accompaniedYes ? "block" : "none";
+
+    // Viene, alergia, etc
+    const showExtraFields = attendingYes;
+    stayOptions.style.display = showExtraFields ? "block" : "none";
+    allergiesField.style.display = showExtraFields ? "block" : "none";
+    commentsField.style.display = showExtraFields ? "block" : "none";
+  });
+
+  // Agregar canciones
   const songsContainer = document.getElementById("songs-container");
 
-  let songCount = 1; 
-
-  // Agregar una nueva canción
-  function addSongInput() {
+  // Función para validar el último campo de canción
+  function validateLastSongInput() {
     const songInputs = songsContainer.querySelectorAll("input[type='text']");
-    for (let input of songInputs) {
-      if (input.value.trim() === "") {
-        alert("Por favor, rellena el nombre de la canción antes de añadir una nueva canción.");
-        return;
-      }
+    const lastInput = songInputs[songInputs.length - 1];
+
+    // Verificar si el último campo está vacío
+    if (!lastInput.value.trim()) {
+      alert("Por favor, introduce el nombre de la canción antes de añadir otra.");
+      lastInput.focus();
+      return false;
     }
-    if (songInputs.length < 10) {
-      const lastAddButton = songsContainer.querySelector(".add-song-icon");
-      if (lastAddButton) {
-        lastAddButton.style.display = "none";
-      }
-      const newSongInput = document.createElement("div");
-      newSongInput.classList.add("song-input");
-      const songId = `song-${songCount}`;
+    return true;
+  }
 
-      newSongInput.innerHTML = `
-        <label for="${songId}">Canción:</label>
-        <input type="text" id="${songId}" name="song[]" required placeholder="Introduce el nombre de la Canción">
-        <i class="fa fa-plus add-song-icon" style="cursor: pointer;"></i>
-      `;
+  // Función para manejar la lógica de añadir canciones
+  function addSongInput() {
+    // Verificar si el campo actual está vacío antes de añadir uno nuevo
+    if (!validateLastSongInput()) return;
 
-      songsContainer.appendChild(newSongInput);
+    const songInputs = songsContainer.querySelectorAll("input[type='text']");
+    // Si ya hay 10 canciones, no añadir más
+    if (songInputs.length >= 10) {
+      alert("Máximo 10 canciones permitidas.");
+      return;
+    }
 
-      songCount++; 
-    } else {
-      alert("Solo puedes añadir hasta 10 canciones.");
+    // Crear el nuevo campo de canción
+    const newSongInput = document.createElement("div");
+    newSongInput.classList.add("song-input");
+    newSongInput.innerHTML = `
+      <label for="song-${songInputs.length + 1}">Canción:</label>
+      <input type="text" name="song[]" required placeholder="Introduce el nombre de la Canción">
+      <i class="fa fa-plus add-song-icon"></i>
+    `;
+
+    // Añadir el nuevo campo de canción al contenedor
+    songsContainer.appendChild(newSongInput);
+
+    // Ocultar el botón de añadir canción si ya se han añadido canciones
+    if (songInputs.length + 1 >= 10) {
+      newSongInput.querySelector(".add-song-icon").style.display = "none";
+    }
+
+    // Hacer que el botón de añadir canción desaparezca en los campos anteriores
+    const allIcons = songsContainer.querySelectorAll(".add-song-icon");
+    allIcons.forEach(icon => {
+      icon.style.display = "none";
+    });
+
+    // Si aún no se ha llegado al límite de 10 canciones, mostrar el botón en el último input
+    if (songInputs.length + 1 < 10) {
+      newSongInput.querySelector(".add-song-icon").style.display = "inline-block";
     }
   }
+
+  // Delegar evento en el contenedor para detectar clicks en el botón de añadir
   songsContainer.addEventListener("click", function (event) {
-    if (event.target && event.target.classList.contains("add-song-icon")) {
+    // Verificar si el click es sobre el icono de añadir canción
+    if (event.target.classList.contains("add-song-icon")) {
       addSongInput();
     }
   });
