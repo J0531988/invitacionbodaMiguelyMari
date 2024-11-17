@@ -10,7 +10,7 @@
   <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
 
   <script type="text/javascript" src="https://cdn.emailjs.com/dist/email.min.js"></script>
-<script type="text/javascript">
+  <script type="text/javascript">
     function playaudio() {
       const audio = document.getElementById("wedding-audio");
       audio.play().catch(error => {
@@ -27,19 +27,18 @@
   </div>
 
   <!-- Música -->
-  <audio id="wedding-audio" autoplay >
+  <audio id="wedding-audio" autoplay>
     <source src="musica-boda.mp3" type="audio/mpeg">
   </audio>
 
-
-  <!-- Invitacion -->
+  <!-- Invitación -->
   <div id="main-content" style="display:none;">
-    <!-- Rectángulo de invitación centrado -->
+    <!-- Rectángulo de invitación -->
     <div class="invitation-card">
       <h1 class="titulo">¡Bienvenidos a nuestra boda!</h1>
       <div class="invitation-details">
         <p class="nombres">Miguel Y Mari</p>
-        <p><strong>Lugar:</strong> El Patio de las Orquídeas(San Rafael)</p>
+        <p><strong>Lugar:</strong> El Patio de las Orquídeas (San Rafael)</p>
         <p><strong>Fecha:</strong> 21 de Junio de 2025</p>
         <p><strong>Hora:</strong> 14:00</p>
       </div>
@@ -56,34 +55,57 @@
 
     <!-- Confirmación -->
     <div id="confirmation" class="section" style="display:none;">
-      <h2 class="titulosection">Es hora de que las emociones tomen el control. ¿Te apuntas?</h2>
-      <form id="confirmation-form" action="submit_confirmation.php" method="post">
-        <label for="name">Nombre y Apellidos:</label>
-        <input type="text" id="name" name="name" required>
-
-        <label>¿Vienes a la boda?</label>
-        <input type="radio" id="yes" name="attending" value="yes" required> Sí
-        <input type="radio" id="no" name="attending" value="no" required> No
-        
-        <div id="stay-options" style="display: none;">
-          <label>¿Te quedas a dormir?</label>
-          <input type="radio" id="stay-yes" name="stay" value="yes"> Sí
-          <input type="radio" id="stay-no" name="stay" value="no">
-        </div>
-
-        <div id="nights-options" style="display: none;">
-          <label>¿Cuántas noches?</label>
-          <input type="checkbox" name="nights[]" value="viernes"> Viernes
-          <input type="checkbox" name="nights[]" value="sabado"> Sábado
-          <input type="checkbox" name="nights[]" value="viernes-sabado"> Viernes y Sábado
-        </div>
-
-        <button type="submit">Enviar</button>
-      </form>
+  <h2 class="titulosection">Es hora de que las emociones tomen el control. ¿Te apuntas?</h2>
+  <form id="confirmation-form" action="submit_confirmation.php" method="post" class="confirmation-form">
+    <div class="form-group">
+      <label for="name">Nombre y Apellidos:</label>
+      <input type="text" id="name" name="name" required>
     </div>
 
-    <!-- Localizacion -->
-    <div id="localizacion" class="section" style="display:none;">
+    <div class="form-group">
+      <label>¿Vienes a la boda?</label>
+      <input type="radio" id="yes" name="attending" value="yes" required> Sí
+      <input type="radio" id="no" name="attending" value="no" required> No
+    </div>
+
+    <div id="additional-fields" class="additional-fields" style="display: none;">
+      <div class="form-group">
+        <label>¿Vienes acompañado?</label>
+        <input type="radio" id="accompanied-yes" name="accompanied" value="yes"> Sí
+        <input type="radio" id="accompanied-no" name="accompanied" value="no"> No
+      </div>
+
+      <div id="companion-name-field" class="form-group" style="display: none;">
+        <label for="companion-name">¿Cuál es su nombre?</label>
+        <input type="text" id="companion-name" name="companion_name">
+      </div>
+
+      <div id="stay-options" class="form-group" style="display: none;">
+        <label>¿Qué día vienes?</label>
+        <select id="arrival-day" name="arrival_day">
+          <option value="viernes">Viernes</option>
+          <option value="sabado">Sábado</option>
+          <option value="domingo">Domingo</option>
+        </select>
+      </div>
+
+      <div id="allergies-field" class="form-group" style="display: none;">
+        <label for="allergies">¿Tienes alguna alergia o intolerancia?</label>
+        <input type="text" id="allergies" name="allergies">
+      </div>
+
+      <div id="comments-field" class="form-group" style="display: none;">
+        <label for="comments">¿Algún comentario más?</label>
+        <textarea id="comments" name="comments" rows="3"></textarea>
+      </div>
+    </div>
+
+    <button type="submit" class="submit-button">Enviar</button>
+  </form>
+</div>
+
+    <!-- Localización -->
+     <div id="localizacion" class="section" style="display:none;">
       <h2 class="titulosection">¡oh Dios mío! Soy Ansiedad, ¿Dónde puedo dejar mis cosas?</h2>
       <h3>El patio de las Orquídeas(San Rafael)</h3>
       <h4><b>Dirección:</b> C. Triguillo, 7, 40410 El Espinar, Segovia</h4>
@@ -92,28 +114,26 @@
       <iframe src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d3024.3728900279616!2d-4.197516923482274!3d40.70980703774911!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0xd410ff2852bb1ed%3A0x808bb7ce5709d078!2sEl%20Patio%20de%20Las%20Orqu%C3%ADdeas!5e0!3m2!1ses!2ses!4v1731405149616!5m2!1ses!2ses" width="100%" height="500px" style="border:0;" allowfullscreen="" loading="lazy" referrerpolicy="no-referrer-when-downgrade"></iframe>
     </div>
 
-
     <!-- Playlist -->
-<div id="playlist" class="section" style="display:none;">
-  <h2 class="titulosection">¡Ayúdanos a crear la "Isla de la Música"!</h2>
-  <form id="playlist-form">
-    <div class="song-container">
-      <label for="name" id="nombrecancion">Nombre:</label>
-      <input type="text" id="name" name="name" required placeholder="Introduce tu nombre">
-    </div>
-    <div id="songs-container">
-      <div class="song-input">
-        <label for="song-1">Canción:</label>
-        <input type="text" name="song[]" required placeholder="Introduce el nombre de la Canción">
-        <i class="fa fa-plus add-song-icon"  style="cursor: pointer;"></i> 
-      </div>
+    <div id="playlist" class="section" style="display:none;">
+      <h2 class="titulosection">¡Ayúdanos a crear la "Isla de la Música"!</h2>
+      <form id="playlist-form">
+        <div class="song-container">
+          <label for="name">Nombre:</label>
+          <input type="text" id="name" name="name" required placeholder="Introduce tu nombre">
+        </div>
+        <div id="songs-container">
+          <div class="song-input">
+            <label for="song-1">Canción:</label>
+            <input type="text" name="song[]" required placeholder="Introduce el nombre de la Canción">
+            <i class="fa fa-plus add-song-icon"></i>
+          </div>
+        </div>
+        <button type="submit">Enviar Playlist</button>
+      </form>
     </div>
 
-    <button type="submit">Enviar Playlist</button>
-  </form>
-</div>
-
-    <!-- contacto -->
+    <!-- Contacto -->
 <div id="contacto" class="section" style="display:none;">
   <h2 class="titulosection">¡Contacta con nosotros!</h2>
   <div style="margin-bottom: 10px;">
