@@ -33,7 +33,6 @@ document.addEventListener("DOMContentLoaded", function () {
   const confirmationForm = document.getElementById("confirmation-form");
   const additionalFields = document.getElementById("additional-fields");
   const companionNameField = document.getElementById("companion-name-field");
-  const stayOptions = document.getElementById("stay-options");
   const allergiesField = document.getElementById("allergies-field");
   const commentsField = document.getElementById("comments-field");
 
@@ -53,7 +52,6 @@ document.addEventListener("DOMContentLoaded", function () {
 
     // Viene, alergia, etc
     const showExtraFields = attendingYes;
-    stayOptions.style.display = showExtraFields ? "block" : "none";
     allergiesField.style.display = showExtraFields ? "block" : "none";
     commentsField.style.display = showExtraFields ? "block" : "none";
   });
