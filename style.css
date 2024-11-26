@@ -39,6 +39,9 @@ body, html {
   #loading-screen img {
     content: url("inside-outmvl.jpg");
   }
+  #menu{
+    width: 95%;
+  }
 }
 #loading-screen.fade-out {
   background-color: #fff; 
