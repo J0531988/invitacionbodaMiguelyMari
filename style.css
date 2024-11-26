@@ -393,3 +393,6 @@ form button:hover {
 .confirmation-form input[type="radio"]:checked + input[type="radio"] + label {
   font-weight: bold;
 }
+#fotoinvi{
+  width: 100%;
+}  
