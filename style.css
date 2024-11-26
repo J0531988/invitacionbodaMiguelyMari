@@ -395,4 +395,23 @@ form button:hover {
 }
 #fotoinvi{
   width: 100%;
+   clip-path: circle(50%);
 }  
+button[data-section="playlist"] {
+      background-color: #f67221;
+}
+button[data-section="playlist"]:hover {
+      background-color: #59290C;
+}
+button[data-section="localizacion"] {
+      background-color: #39b5ff;
+}
+button[data-section="localizacion"]:hover {
+      background-color: #194F70;
+}
+button[data-section="contacto"] {
+      background-color: #f95ebe;
+}
+button[data-section="contacto"]:hover {
+      background-color: #813162;
+}
