@@ -15,8 +15,12 @@ document.addEventListener("DOMContentLoaded", function () {
     this.style.display = "none";
   });
 
+  // Mostrar secciones con scroll hacia abajo
   function showSection(sectionId) {
+    // Obtener la sección a mostrar
     const section = document.getElementById(sectionId);
+
+    // Hacer scroll hacia la sección seleccionada con desplazamiento suave
     section.scrollIntoView({ behavior: "smooth", block: "start" });
 
     // Mostrar la sección
@@ -28,10 +32,12 @@ document.addEventListener("DOMContentLoaded", function () {
 
   document.querySelectorAll('.menu-button').forEach(button => {
     button.addEventListener("click", function () {
+      // Usar el ID de la sección que está en el atributo 'data-section'
       showSection(this.getAttribute('data-section'));
     });
   });
 
+  // Confirmación: Mostrar/ocultar campos adicionales
   const confirmationForm = document.getElementById("confirmation-form");
   const additionalFields = document.getElementById("additional-fields");
   const companionNameField = document.getElementById("companion-name-field");
@@ -47,8 +53,10 @@ document.addEventListener("DOMContentLoaded", function () {
       alert("Sentimos que no puedas venir...");
     }
 
+    // Mostrar campos adicionales si asiste a la boda
     additionalFields.style.display = attendingYes ? "block" : "none";
 
+    // Mostrar campo de acompañante si viene acompañado
     companionNameField.style.display = accompaniedYes ? "block" : "none";
 
     // Mostrar opciones de estancia, alergias y comentarios si asiste
@@ -74,15 +82,20 @@ document.addEventListener("DOMContentLoaded", function () {
     }
     return true;
   }
+
+  // Función para manejar la lógica de añadir canciones
   function addSongInput() {
+    // Verificar si el campo actual está vacío antes de añadir uno nuevo
     if (!validateLastSongInput()) return;
 
     const songInputs = songsContainer.querySelectorAll("input[type='text']");
-    // max 10 canciones
+    // Si ya hay 10 canciones, no añadir más
     if (songInputs.length >= 10) {
       alert("Máximo 10 canciones permitidas.");
       return;
     }
+
+    // Crear el nuevo campo de canción
     const newSongInput = document.createElement("div");
     newSongInput.classList.add("song-input");
     newSongInput.innerHTML = `
@@ -91,20 +104,30 @@ document.addEventListener("DOMContentLoaded", function () {
       <input type="text" name="song[]" required placeholder="Introduce el nombre de la Canción">
       <i class="fa fa-plus add-song-icon"></i>
     `;
+
+    // Añadir el nuevo campo de canción al contenedor
     songsContainer.appendChild(newSongInput);
+
+    // Ocultar el botón de añadir canción si ya se han añadido canciones
     if (songInputs.length + 1 >= 10) {
       newSongInput.querySelector(".add-song-icon").style.display = "none";
     }
+
+    // Hacer que el botón de añadir canción desaparezca en los campos anteriores
     const allIcons = songsContainer.querySelectorAll(".add-song-icon");
     allIcons.forEach(icon => {
       icon.style.display = "none";
     });
+
+    // Si aún no se ha llegado al límite de 10 canciones, mostrar el botón en el último input
     if (songInputs.length + 1 < 10) {
       newSongInput.querySelector(".add-song-icon").style.display = "inline-block";
     }
   }
 
+  // Delegar evento en el contenedor para detectar clicks en el botón de añadir
   songsContainer.addEventListener("click", function (event) {
+    // Verificar si el click es sobre el icono de añadir canción
     if (event.target.classList.contains("add-song-icon")) {
       addSongInput();
     }
