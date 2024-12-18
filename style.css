@@ -101,9 +101,8 @@ body, html {
 
 /* Rectángulo de invitación */
 .invitation-card {
-  background-image: url('fondo2.jpg'); 
+  background-image: url('fondo1.jpg'); 
   background-size: cover;
-  background-position: center; 
   background-attachment: fixed; 
   background-repeat: no-repeat;
   background-color: #fff;
